@@ -1,14 +1,19 @@
 <template>
-  <div>Hello {{ value }}</div>
+  <div>{{ value }}</div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "App",
+  async mounted() {
+    const res = await axios.get("/api/GetMessage?name=Aaron");
+    this.value = res.data;
+  },
   data() {
     return {
-      value: "World"
+      value: "Waiting for server response",
     };
-  }
+  },
 };
 </script>
